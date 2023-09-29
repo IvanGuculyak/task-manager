@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <h1>Task manager</h1>
+  <p>Welcome to the best helper in your jobs</p>
+
+  <h2>Our content:</h2>
+  <ul>
+    <li>Num positions: {{ num_position }}</li>
+    <li>Num task types: {{ num_task_type }}</li>
+    <li>Num tasks: {{ num_task }}</li>
+    <li>Num workers: {{ num_worker }}</li>
+  </ul>
+
+{% endblock %}
