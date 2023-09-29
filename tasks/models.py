@@ -20,7 +20,8 @@ class Worker(AbstractUser):
     position = models.ForeignKey(
         Position,
         on_delete=models.CASCADE,
-        related_name="workers"
+        related_name="workers",
+        null=True
     )
 
     def __str__(self):
@@ -30,12 +31,21 @@ class Worker(AbstractUser):
 
 
 class Task(models.Model):
-    PRIORITY = ("Urgent", "Height", "Medium", "Low")
+    PRIORITY = [
+        ("UR", "Urgent"),
+        ("HG", "Height"),
+        ("MD", "Medium"),
+        ("LW", "Low")
+    ]
     name = models.CharField(max_length=255)
     description = models.TextField(null=True, blank=True)
     deadline = models.DateField()
     is_completed = models.BooleanField(default=False)
-    priority = models.CharField(choices=PRIORITY, default="Medium")
+    priority = models.CharField(
+        max_length=2,
+        choices=PRIORITY,
+        default="MD"
+    )
     task_type = models.ForeignKey(
         TaskType,
         on_delete=models.CASCADE,
