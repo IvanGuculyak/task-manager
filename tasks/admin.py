@@ -5,7 +5,13 @@ from tasks.models import Position, TaskType, Task, Worker
 
 admin.site.register(Position)
 admin.site.register(TaskType)
-admin.site.register(Task)
+
+
+@admin.register(Task)
+class AdminTask(admin.ModelAdmin):
+    list_display = ["name", "priority", "task_type",]
+    list_filter = ["priority", "task_type",]
+    search_fields = ["name", "priority",]
 
 
 @admin.register(Worker)
