@@ -1,6 +1,7 @@
 from django.conf import settings
 from django.contrib.auth.models import AbstractUser
 from django.db import models
+from django.urls import reverse
 
 
 class Position(models.Model):
@@ -41,22 +42,28 @@ class Worker(AbstractUser):
             f"Position: {self.position}"
         )
 
+    def get_absolute_url(self):
+        return reverse(
+            "tasks:worker-detail",
+            args=[str(self.id)]
+        )
+
 
 class Task(models.Model):
     PRIORITY = [
-        ("UR", "Urgent"),
-        ("HG", "Height"),
-        ("MD", "Medium"),
-        ("LW", "Low")
+        ("Urgent", "Urgent"),
+        ("Height", "Height"),
+        ("Medium", "Medium"),
+        ("Low", "Low")
     ]
     name = models.CharField(max_length=255)
     description = models.TextField(null=True, blank=True)
     deadline = models.DateField()
     is_completed = models.BooleanField(default=False)
     priority = models.CharField(
-        max_length=2,
+        max_length=64,
         choices=PRIORITY,
-        default="MD"
+        default="Medium"
     )
     task_type = models.ForeignKey(
         TaskType,
@@ -73,3 +80,9 @@ class Task(models.Model):
 
     def __str__(self):
         return f"{self.name} priority: {self.priority}"
+
+    def get_absolute_url(self):
+        return reverse(
+            "tasks:task-detail",
+            args=[str(self.id)]
+        )
