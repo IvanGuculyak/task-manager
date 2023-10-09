@@ -29,7 +29,8 @@ class Worker(AbstractUser):
         Position,
         on_delete=models.CASCADE,
         related_name="workers",
-        null=True
+        null=True,
+        blank=True
     )
 
     class Meta:
@@ -79,7 +80,7 @@ class Task(models.Model):
         ordering = ("name",)
 
     def __str__(self):
-        return f"{self.name} priority: {self.priority}"
+        return f"{self.name} priority: {self.priority} type: {self.task_type}"
 
     def get_absolute_url(self):
         return reverse(
