@@ -2,10 +2,27 @@
 {% load crispy_forms_filters %}
 
 {% block content %}
-  <h1>{{ object|yesno:"Update,Create" }} Worker</h1>
-  <form action="" method="post" novalidate>
-    {% csrf_token %}
-    {{ form|crispy }}
-    <input type="submit" value="Submit" class="btn btn-primary">
-  </form>
+  <div class="container my-auto">
+    <div class="row">
+      <div class=" col-md-8 col-12 mx-auto mt-5">
+        <div class="card z-index-0 fadeIn3 fadeInBottom">
+          <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2">
+            <div class="bg-gradient-primary shadow-primary border-radius-lg py-3 pe-1">
+              <h3 class="text-black font-weight-bolder text-center mt-3 mb-0">
+                Create Worker
+              </h3>
+            </div>
+          </div>
+          <div class="card-body">
+            <form action="" method="post" novalidate>
+              {% csrf_token %}
+              {{ form|crispy }}
+
+              <input type="submit" value="submit" class="btn btn-primary w-100 my-4 mb-2">
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 {% endblock %}

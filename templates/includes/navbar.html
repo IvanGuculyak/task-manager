@@ -1,0 +1,61 @@
+<div class="container position-sticky z-index-sticky top-0">
+  <div class="row">
+    <div class="col-12">
+      <nav
+          class="navbar navbar-expand-lg  blur border-radius-xl top-0 z-index-fixed position-absolute my-3 py-2 start-0 end-0 mx-4">
+        <div class="container-fluid  bg-white rounded">
+          <a class="navbar-brand font-weight-bolder ms-sm-3" href="{% url 'tasks:index' %}">
+            Task Manager
+          </a>
+          <button class="navbar-toggler shadow-none ms-2" type="button" data-bs-toggle="collapse"
+                  data-bs-target="#navigation" aria-controls="navigation" aria-expanded="false"
+                  aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon mt-2">
+          <span class="navbar-toggler-bar bar1"></span>
+          <span class="navbar-toggler-bar bar2"></span>
+          <span class="navbar-toggler-bar bar3"></span>
+        </span>
+          </button>
+          <div class="collapse navbar-collapse pt-3 pb-2 py-lg-0" id="navigation">
+            <ul class="navbar-nav navbar-nav-hover ms-lg-12 ps-lg-5 w-100">
+              <li class="nav-item dropdown dropdown-hover mx-2">
+                <a class="nav-link ps-2 d-flex cursor-pointer align-items-center" href="{% url 'tasks:worker-list' %}">
+                  <i class="material-icons opacity-6 me-2 text-md">Workers</i>
+                </a>
+              </li>
+
+              <li class="nav-item dropdown dropdown-hover mx-2">
+                <a class="nav-link ps-2 d-flex cursor-pointer align-items-center" href="{% url 'tasks:task-list' %}">
+                  <i class="material-icons opacity-6 me-2 text-md">Tasks</i>
+                </a>
+              </li>
+
+              <li class="nav-item dropdown dropdown-hover mx-2">
+                <a class="nav-link ps-2 d-flex cursor-pointer align-items-center"
+                   href="{% url 'tasks:task-type-list' %}">
+                  <i class="material-icons opacity-6 me-2 text-md">Task Types</i>
+                </a>
+              </li>
+
+              <li class="nav-item dropdown dropdown-hover mx-2">
+                <a class="nav-link ps-2 d-flex cursor-pointer align-items-center"
+                   href="{% url 'tasks:position-list' %}">
+                  <i class="material-icons opacity-6 me-2 text-md">Positions</i>
+                </a>
+              </li>
+
+              <li class="nav-item ms-lg-auto my-auto ms-3 ms-lg-0">
+            <span class="btn btn-sm  bg-gradient-primary  mb-0 me-1 mt-2 mt-md-0">
+              {% if user.is_authenticated %}
+                User: {{ user.username }}  <a href="{% url 'logout' %}">Logout</a>
+              {% else %}
+                <a href="{% url 'login' %}" target="_blank">Login</a>
+              {% endif %}
+            </span>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+    </div>
+  </div>

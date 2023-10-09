@@ -1,9 +1,10 @@
 {% extends "base.html" %}
 
 {% block content %}
-  <h1>Worker List <a href="{% url 'tasks:worker-create' %}" class="btn btn-primary" style="float: right">+</a></h1>
+  <h1 style="color:white">Worker List <a href="{% url 'tasks:worker-create' %}" class="btn btn-primary"
+                                         style="float: right">+</a></h1>
   {% if worker_list %}
-    <table class="table">
+    <table class="table" style="color:white">
       <tr>
         <th>ID</th>
         <th>Full name</th>
