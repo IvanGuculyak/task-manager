@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <h1 style="color:white">Task name: {{ task.name }} <a href="{% url 'tasks:task-update' pk=task.id %}"
+                                                        style="float: right" class="btn btn-secondary">Edit</a></h1>
+  {% if task.description %}
+    <p><strong>Description:</strong> {{ task.description }}</p>
+  {% endif %}
+  <p style="color:white"><strong>Deadline:</strong> {{ task.deadline }}</p>
+  <p style="color:white"><strong>Is_completed:</strong> {{ task.is_completed }}</p>
+  <p style="color:white"><strong>Priority:</strong> {{ task.priority }}</p>
+  <div class="ml-3" style="color:white">
+    <h3>Workers:</h3>
+    {% for worker in task.assignees.all %}
+      <hr>
+      <p class="text-muted">{{ worker.id }}</p>
+      <p>{{ worker.first_name }} {{ worker.last_name }}</p>
+    {% empty %}
+      <p>No workers</p>
+    {% endfor %}
+  </div>
+{% endblock %}
